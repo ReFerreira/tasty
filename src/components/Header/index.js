@@ -19,8 +19,13 @@ import {
 
 function Header({ toggleTheme }) {
   const [visible, setVisible] = useState(false);
+
   function toggleShow() {
+    const teste = window.location.pathname;
     setVisible(!visible);
+    if (teste === '/') {
+      setVisible(false);
+    }
   }
   const { colors, title } = useContext(ThemeContext);
   return (
