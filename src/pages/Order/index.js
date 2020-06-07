@@ -37,7 +37,6 @@ function Order({ cart, total, removeFromCart, updateAmount }) {
           <ProductTable>
             <thead>
               <tr>
-                <th />
                 <th>Produto</th>
                 <th>Qtd</th>
                 <th>SubTotal</th>

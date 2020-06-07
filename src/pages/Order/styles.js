@@ -40,12 +40,12 @@ export const ProductTable = styled.div`
   }
 
   tbody td {
-    padding: 0.8rem;
+    padding: 0.5rem;
     border-bottom: 1px solid #eee;
   }
 
   img {
-    height: 8rem;
+    height: 7.3rem;
   }
 
   strong {
@@ -77,7 +77,7 @@ export const ProductTable = styled.div`
   button {
     background: none;
     border: 0;
-    padding: 0.4rem;
+    padding: 0.2rem;
   }
 `;
 export const Total = styled.div`
