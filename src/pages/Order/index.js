@@ -29,7 +29,7 @@ function Order({ cart, total, removeFromCart, updateAmount }) {
     <>
       {cart.length === 0 ? (
         <Warn>
-          <h2>Hi {name} You did not order for any product yet</h2>
+          <h2>Hi {name} your cart is empty</h2>
           <img src={emptyCart} alt="emptyCart" />
         </Warn>
       ) : (
@@ -51,7 +51,7 @@ function Order({ cart, total, removeFromCart, updateAmount }) {
                   </td>
                   <td>
                     <strong>{food.name}</strong>
-                    <span>{food.price}</span>
+                    <span>{food.priceFromatted}</span>
                   </td>
                   <td>
                     <div>

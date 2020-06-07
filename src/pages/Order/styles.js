@@ -31,12 +31,12 @@ export const Container = styled.div`
 `;
 export const ProductTable = styled.div`
   max-width: 700px;
-  width: 100%;
+  width: 90%;
 
   thead th {
     color: #999;
     text-align: left;
-    padding: 0.6rem;
+    padding: 0.4rem;
   }
 
   tbody td {
