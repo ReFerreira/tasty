@@ -9,7 +9,7 @@ import { signInRequest } from '../../store/modules/auth/actions';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('name is required'),
-  password: Yup.string().required('password is required'),
+  // password: Yup.string().required('password is required'),
 });
 
 export default function SignIn() {
@@ -26,12 +26,10 @@ export default function SignIn() {
       <img src={logo} alt="Tasty Restaurant" />
       <Form schema={schema} onSubmit={handleSubmit}>
         <Input name="name" type="name" placeholder="Full name" />
-        <Input name="password" type="password" placeholder="Password" />
+        {/* <Input name="password" type="password" placeholder="Password" /> */}
 
         <button type="submit">{loading ? 'Loading...' : 'Log In'}</button>
-        <Link to="/register">
-          <p>Create an acount</p>
-        </Link>
+        <Link to="/register">{/* <p>Create an acount</p> */}</Link>
       </Form>
     </>
   );

@@ -1,94 +1,73 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { ProductList, Container } from './styles';
+import * as CartActions from '../../store/modules/cart/action';
 
-export default function Main() {
-  // const name = localStorage.getItem('name');
+import { formatPrice } from '../../utils/format';
 
-  return (
-    <Container>
-      <ProductList>
-        <li>
-          <img
-            src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png"
-            alt="Ao molho"
-          />
-          <strong>Ao molho</strong>
-          <p>Macarrão ao molho branco, fughi e cheiro verde das montanhas.</p>
-          <span>R$19,90</span>
+import data from '../../services/data';
 
-          <button type="button">
-            <div>
-              <MdAddShoppingCart size="1.5rem" /> 0
-            </div>
-            <span>Add to Order</span>
-          </button>
-        </li>
-        <li>
-          <img
-            src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png"
-            alt="Ao molho"
-          />
-          <strong>Ao molho</strong>
-          <p>Macarrão ao molho branco, fughi e cheiro verde das montanhas.</p>
-          <span>R$19,90</span>
+class Main extends Component {
+  // eslint-disable-next-line react/state-in-constructor
+  state = {
+    foods: [],
+  };
 
-          <button type="button">
-            <div>
-              <MdAddShoppingCart size="1.5rem" /> 0
-            </div>
-            <span>Add to Order</span>
-          </button>
-        </li>
-        <li>
-          <img
-            src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png"
-            alt="Ao molho"
-          />
-          <strong>Ao molho</strong>
-          <p>Macarrão ao molho branco, fughi e cheiro verde das montanhas.</p>
-          <span>R$19,90</span>
+  componentDidMount() {
+    const { foods } = data;
 
-          <button type="button">
-            <div>
-              <MdAddShoppingCart size="1.5rem" /> 0
-            </div>
-            <span>Add to Order</span>
-          </button>
-        </li>
-        <li>
-          <img
-            src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png"
-            alt="Ao molho"
-          />
-          <strong>Ao molho</strong>
-          <p>Macarrão ao molho branco, fughi e cheiro verde das montanhas.</p>
-          <span>R$19,90</span>
+    const dados = foods.map((food) => ({
+      ...food,
+      priceFromatted: formatPrice(food.price),
+    }));
+    this.setState({ foods: dados });
+  }
 
-          <button type="button">
-            <div>
-              <MdAddShoppingCart size="1.5rem" /> 0
-            </div>
-            <span>Add to Order</span>
-          </button>
-        </li>
-        <li>
-          <img
-            src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png"
-            alt="Ao molho"
-          />
-          <strong>Ao molho</strong>
-          <p>Macarrão ao molho branco, fughi e cheiro verde das montanhas.</p>
-          <span>R$19,90</span>
+  handleAddProduct = (food) => {
+    const { addToCart } = this.props;
 
-          <button type="button">
-            <div>
-              <MdAddShoppingCart size="1.5rem" /> 0
-            </div>
-            <span>Add to Order</span>
-          </button>
-        </li>
-      </ProductList>
-    </Container>
-  );
+    addToCart(food);
+  };
+
+  render() {
+    const { foods } = this.state;
+    const { amount } = this.props;
+    return (
+      <Container>
+        <ProductList>
+          {foods.map((food) => (
+            <li key={food.id}>
+              <img src={food.image} alt={food.name} />
+              <strong>{food.name}</strong>
+              <p>{food.description}</p>
+              <span>{food.priceFromatted}</span>
+
+              <button type="button" onClick={() => this.handleAddProduct(food)}>
+                <div>
+                  <MdAddShoppingCart size="1.5rem" /> {amount[food.id] || 0}
+                </div>
+                <span>Add to Order</span>
+              </button>
+            </li>
+          ))}
+        </ProductList>
+      </Container>
+    );
+  }
+  // const foods = data;
 }
+
+const mapStateToProps = (state) => ({
+  amount: state.cart.reduce((amount, food) => {
+    amount[food.id] = food.amount;
+
+    return amount;
+  }, {}),
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

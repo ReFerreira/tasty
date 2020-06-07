@@ -13,9 +13,14 @@ export const Content = styled.div`
   max-width: 31rem;
   text-align: center;
   background: #e5e5e5;
-  height: 40rem;
+  height: 30rem;
   padding: 20px;
   border-radius: 4px;
+
+  img {
+    height: 6rem;
+    width: 6rem;
+  }
 
   form {
     display: flex;
@@ -26,7 +31,7 @@ export const Content = styled.div`
       background: #f5f5f5;
       border: 0;
       border-radius: 4px;
-      height: 44px;
+      height: 4.4rem;
       padding: 0 15px;
       color: #3d3d4d;
       margin: 0 0 10px;
@@ -39,7 +44,7 @@ export const Content = styled.div`
     span {
       color: #f64c75;
       align-self: flex-start;
-      margin: 0 0 10px;
+      margin: 0 0 1rem;
       font-weight: bold;
     }
 
@@ -48,14 +53,14 @@ export const Content = styled.div`
     }
 
     button {
-      margin: 5px 0 0;
-      height: 44px;
+      margin: 0.5rem 0 0;
+      height: 4.4rem;
       background: #ffb84d;
       font-weight: bold;
       color: #fff;
       border: 0;
       border-radius: 4px;
-      font-size: 16px;
+      font-size: 1.6rem;
       transition: background 0.2s;
 
       &:hover {
@@ -65,7 +70,7 @@ export const Content = styled.div`
 
     a {
       color: #fff;
-      margin-top: 15px;
+      margin-top: 1.5rem;
       font-size: 1.6rem;
       opacity: 0.8;
 

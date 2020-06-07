@@ -39,4 +39,16 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 50%;
+    }
+  }
+
+  @media (max-width: 320px) {
+    html {
+      font-size: 40%;
+    }
+  }
 `;
